@@ -1,0 +1,42 @@
+SET autocommit=1;
+
+
+DROP TABLE Empleados;
+DROP TABLE Contrato;
+DROP TABLE Equipo;
+DROP TABLE Patrocinadores;
+DROP TABLE F1;
+DROP TABLE F2;
+DROP TABLE MotoGP;
+DROP TABLE Mecanico;
+DROP TABLE IngenieroCarreara;
+DROP TABLE Piloto;
+DROP TABLE Circuito;
+DROP TABLE Calendario;
+DROP TABLE Vehiculo;
+DROP TABLE Coche;
+DROP TABLE Moto;
+DROP TABLE Entrenamineto;
+DROP TABLE Proveedor;
+DROP TABLE Pieza;
+
+
+CREATE TABLE Empleados (
+    
+);
+
+
+CREATE TABLE Contrato (
+    
+);
+
+
+CREATE TABLE Equipo (
+    
+);
+
+
+
+CREATE TABLE Patrocinadores (
+    
+);
