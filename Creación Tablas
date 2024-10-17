@@ -22,8 +22,38 @@ DROP TABLE Pieza;
 
 
 CREATE TABLE Empleados (
-    
+    EmpleadoID int not null ,
+    Apellidos varchar(255),
+    Nombre varchar(255),
+    Direccion varchar(255),
+    Ciudad varchar(255),
+ PRIMARY KEY (EmpleadoID)
 );
+
+
+CREATE SEQUENCE S_EMPLEDOS
+START WITH 1
+INCREMENT BY 1
+CACHE 10;
+
+
+CREATE OR REPLACE TRIGGER T_EMPLEADOS_ID
+BEFORE INSERT
+ON Empleados
+REFERENCING NEW AS NEW
+FOR EACH ROW
+BEGIN
+  if(:new.EmpleadoID is null) then
+  SELECT S_EMPLEDOS.nextval
+  INTO :new.EmpleadoID
+  FROM dual;
+  end if;
+END;
+/
+
+ALTER TRIGGER "T_EMPLEADOS_ID" ENABLE;
+
+-- iDENTITY 
 
 
 CREATE TABLE Contrato (
@@ -38,5 +68,54 @@ CREATE TABLE Equipo (
 
 
 CREATE TABLE Patrocinadores (
+    
+);
+
+CREATE TABLE F1 (
+    
+);
+
+
+CREATE TABLE  F2(
+    
+);
+
+
+CREATE TABLE  MotoGP(
+    
+);
+CREATE TABLE  Mecanico(
+    
+);
+CREATE TABLE  IngenieroCarreara(
+    
+);
+CREATE TABLE  Piloto(
+    
+);
+CREATE TABLE  Circuito(
+    
+);
+CREATE TABLE Calendario (
+    
+);
+CREATE TABLE  Vehiculo(
+    
+);
+CREATE TABLE  Coche(
+    
+);
+CREATE TABLE  Moto(
+    
+);
+CREATE TABLE  Entrenamineto(
+    
+);
+
+CREATE TABLE Proveedor(
+    
+);
+
+CREATE TABLE Pieza(
     
 );
