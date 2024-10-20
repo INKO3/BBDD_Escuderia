@@ -196,3 +196,6 @@ CREATE TABLE VehiculoPieza (
     FOREIGN KEY (VehiculoID) REFERENCES Vehiculo(VehiculoID),
     FOREIGN KEY (PiezaID) REFERENCES Pieza(PiezaID)
 );
+
+
+-- Por hacer: contrato, contable, Operador produccion
