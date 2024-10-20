@@ -94,11 +94,14 @@ CREATE TABLE IngenieroCarrera (
     EmpleadoID int PRIMARY KEY,
     PilotoID int,
     EquipoID int,
+    DirigidoPor int,      
     FOREIGN KEY (EmpleadoID) REFERENCES Empleados(EmpleadoID),
     FOREIGN KEY (PilotoID) REFERENCES Piloto(EmpleadoID),
     FOREIGN KEY (EquipoID) REFERENCES Equipo(EquipoID)
+    
 );
 
+ ALTER TABLE IngenieroCarrera ADD FOREIGN KEY FOREIGN KEY (DirigidoPor) REFERENCES IngenieroCarrera(EmpleadoID) ON DELETE CASCADE;
 
 CREATE TABLE Vehiculo (
     VehiculoID int PRIMARY KEY,
