@@ -22,12 +22,11 @@ DROP TABLE Pieza;
 
 
 CREATE TABLE Empleados (
-    EmpleadoID int not null ,
-    Apellidos varchar(255),
+   EmpleadoID int not null PRIMARY KEY,
     Nombre varchar(255),
-    Direccion varchar(255),
-    Ciudad varchar(255),
- PRIMARY KEY (EmpleadoID)
+    Apellidos varchar(255),
+    DNI varchar(20) UNIQUE,
+    Telefono varchar(15)
 );
 
 
@@ -38,84 +37,157 @@ CACHE 10;
 
 
 CREATE OR REPLACE TRIGGER T_EMPLEADOS_ID
-BEFORE INSERT
-ON Empleados
+BEFORE INSERT ON Empleados
 REFERENCING NEW AS NEW
 FOR EACH ROW
 BEGIN
-  if(:new.EmpleadoID is null) then
-  SELECT S_EMPLEDOS.nextval
-  INTO :new.EmpleadoID
-  FROM dual;
-  end if;
+    IF :NEW.EmpleadoID IS NULL THEN
+        SELECT S_EMPLEADOS.NEXTVAL INTO :NEW.EmpleadoID FROM dual;
+    END IF;
 END;
 /
+
 
 ALTER TRIGGER "T_EMPLEADOS_ID" ENABLE;
 
 -- iDENTITY 
 
-
-CREATE TABLE Contrato (
-    
-);
-
-
 CREATE TABLE Equipo (
-    
+     EquipoID int PRIMARY KEY,
+    Categoria varchar(255),
+    Nombre varchar(255),
+    FechaCreacion DATE,
 );
-
 
 
 CREATE TABLE Patrocinadores (
-    
-);
-
-CREATE TABLE F1 (
-    
-);
-
-
-CREATE TABLE  F2(
-    
+    PatrocinadorID int PRIMARY KEY,
+    Nombre varchar(255),
+    ValorMonetario decimal(10, 2),
+    FechaInicio DATE,
+    FechaFin DATE,
+    EquipoID int,
+    FOREIGN KEY (EquipoID) REFERENCES Equipo(EquipoID)
 );
 
 
-CREATE TABLE  MotoGP(
-    
+CREATE TABLE Piloto (
+    EmpleadoID int PRIMARY KEY,
+    Superlicencia varchar(50),
+    EquipoID int,
+    VehiculoID int,
+    FOREIGN KEY (EmpleadoID) REFERENCES Empleados(EmpleadoID),
+    FOREIGN KEY (EquipoID) REFERENCES Equipo(EquipoID)
 );
-CREATE TABLE  Mecanico(
-    
+
+
+CREATE TABLE Mecanico (
+    EmpleadoID int PRIMARY KEY,
+    PosicionBoxes varchar(50),
+    EquipoID int,
+    FOREIGN KEY (EmpleadoID) REFERENCES Empleados(EmpleadoID),
+    FOREIGN KEY (EquipoID) REFERENCES Equipo(EquipoID)
 );
-CREATE TABLE  IngenieroCarreara(
-    
+
+
+CREATE TABLE IngenieroCarrera (
+    EmpleadoID int PRIMARY KEY,
+    PilotoID int,
+    EquipoID int,
+    FOREIGN KEY (EmpleadoID) REFERENCES Empleados(EmpleadoID),
+    FOREIGN KEY (PilotoID) REFERENCES Piloto(EmpleadoID),
+    FOREIGN KEY (EquipoID) REFERENCES Equipo(EquipoID)
 );
-CREATE TABLE  Piloto(
-    
+
+
+CREATE TABLE Vehiculo (
+    VehiculoID int PRIMARY KEY,
+    NumeroBastidor varchar(255),
+    PilotoID int,
+    FOREIGN KEY (PilotoID) REFERENCES Piloto(EmpleadoID)
 );
-CREATE TABLE  Circuito(
-    
+
+CREATE TABLE Coche (
+    VehiculoID int PRIMARY KEY,
+    PotenciaCV int,
+    FOREIGN KEY (VehiculoID) REFERENCES Vehiculo(VehiculoID)
 );
+
+CREATE TABLE Moto (
+    VehiculoID int PRIMARY KEY,
+    CilindradaCC int,
+    FOREIGN KEY (VehiculoID) REFERENCES Vehiculo(VehiculoID)
+);
+
+
+CREATE TABLE Circuito (
+    CircuitoID int PRIMARY KEY,
+    Nombre varchar(255),
+    Longitud decimal(6, 2),
+    NumeroCurvas int,
+    SentidoGiro varchar(50),
+    AnoConstruccion int
+);
+
 CREATE TABLE Calendario (
-    
-);
-CREATE TABLE  Vehiculo(
-    
-);
-CREATE TABLE  Coche(
-    
-);
-CREATE TABLE  Moto(
-    
-);
-CREATE TABLE  Entrenamineto(
-    
+    Temporada int,
+    CircuitoID int,
+    OrdenCarrera int,
+    PRIMARY KEY (Temporada, CircuitoID),
+    FOREIGN KEY (CircuitoID) REFERENCES Circuito(CircuitoID)
 );
 
-CREATE TABLE Proveedor(
-    
+
+CREATE TABLE Entrenamiento (
+    EntrenamientoID int PRIMARY KEY,
+    PilotoID int,
+    CircuitoID int,
+    Tiempo decimal(8, 3),
+    FOREIGN KEY (PilotoID) REFERENCES Piloto(EmpleadoID),
+    FOREIGN KEY (CircuitoID) REFERENCES Circuito(CircuitoID)
 );
 
-CREATE TABLE Pieza(
-    
+
+CREATE TABLE Clasificacion (
+    ClasificacionID int PRIMARY KEY,
+    PilotoID int,
+    CircuitoID int,
+    TiempoFinal decimal(8, 3),
+    PosicionFinal int,
+    FOREIGN KEY (PilotoID) REFERENCES Piloto(EmpleadoID),
+    FOREIGN KEY (CircuitoID) REFERENCES Circuito(CircuitoID)
+);
+
+
+CREATE TABLE Carrera (
+    CarreraID int PRIMARY KEY,
+    PilotoID int,
+    CircuitoID int,
+    NumeroEntradasBoxes int,
+    Accidente boolean,
+    PuntuacionFinal int,
+    FOREIGN KEY (PilotoID) REFERENCES Piloto(EmpleadoID),
+    FOREIGN KEY (CircuitoID) REFERENCES Circuito(CircuitoID)
+);
+
+CREATE TABLE Proveedor (
+    ProveedorID int PRIMARY KEY,
+    Nombre varchar(255)
+);
+
+CREATE TABLE Pieza (
+    PiezaID int PRIMARY KEY,
+    NumeroSerie varchar(255),
+    Precio decimal(10, 2),
+    Stock int,
+    ProveedorID int,
+    FOREIGN KEY (ProveedorID) REFERENCES Proveedor(ProveedorID)
+);
+
+CREATE TABLE VehiculoPieza (
+    VehiculoID int,
+    PiezaID int,
+    PRIMARY KEY (VehiculoID, PiezaID),
+    FOREIGN KEY (VehiculoID) REFERENCES Vehiculo(VehiculoID),
+    FOREIGN KEY (PiezaID) REFERENCES Pieza(PiezaID)
 );
