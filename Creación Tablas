@@ -160,14 +160,16 @@ CREATE TABLE Clasificacion (
 
 
 CREATE TABLE Carrera (
-    CarreraID int PRIMARY KEY,
+    CarreraID int,
     PilotoID int,
     CircuitoID int,
     NumeroEntradasBoxes int,
     Accidente boolean,
     PuntuacionFinal int,
-    FOREIGN KEY (PilotoID) REFERENCES Piloto(EmpleadoID),
-    FOREIGN KEY (CircuitoID) REFERENCES Circuito(CircuitoID)
+    PRIMARY KEY (CarreraID, VehiculoID, PilotoID),
+    FOREIGN KEY (CarreraID) REFERENCES Carrera(CarreraID),
+    FOREIGN KEY (VehiculoID) REFERENCES Vehiculo(VehiculoID),
+    FOREIGN KEY (PilotoID) REFERENCES Piloto(PilotoID)
 );
 
 CREATE TABLE Proveedor (
