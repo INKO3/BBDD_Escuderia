@@ -1,0 +1,234 @@
+INSERT INTO Empleado (EmpleadoID, Nombre, Apellidos, DNI, EquipoID, SuperiorID, Telefono)
+VALUES 
+(1, 'Carlos', 'Sainz', 'DNI1234', 1, NULL, '654321987'),
+(2, 'Lewis', 'Hamilton', 'DNI5678', 2, NULL, '987654321'),
+(3, 'Max', 'Verstappen', 'DNI4321', 3, 1, '123456789'),
+(4, 'Sebastian', 'Vettel', 'DNI8765', 4, 2, '456789123'),
+(5, 'Valtteri', 'Bottas', 'DNI1235', 5, 3, '321987654'),
+(6, 'Charles', 'Leclerc', 'DNI2345', 6, 4, '789123456'),
+(7, 'Lando', 'Norris', 'DNI3456', 7, 5, '987123456'),
+(8, 'George', 'Russell', 'DNI4567', 8, 6, '654987321'),
+(9, 'Fernando', 'Alonso', 'DNI5679', 9, 7, '321654987'),
+(10, 'Pierre', 'Gasly', 'DNI6789', 10, 8, '789654123');
+
+INSERT INTO Equipo (EquipoID, NumIntegrantes, JefeEquipoID, FechaCreacion)
+VALUES 
+(1, 10, 1, '2015-03-10'),
+(2, 12, 2, '2010-06-01'),
+(3, 11, 3, '2013-07-12'),
+(4, 9, 4, '2011-01-15'),
+(5, 8, 5, '2018-04-03'),
+(6, 14, 6, '2019-05-11'),
+(7, 7, 7, '2012-09-22'),
+(8, 15, 8, '2020-02-13'),
+(9, 16, 9, '2016-10-07'),
+(10, 9, 10, '2021-01-01');
+
+INSERT INTO Patrocinadores (PatrocinadorID, Nombre, ValorMonetario)
+VALUES 
+(1, 'Red Bull', 5000000.00),
+(2, 'Petronas', 4000000.00),
+(3, 'Shell', 3000000.00),
+(4, 'Pirelli', 2000000.00),
+(5, 'Santander', 2500000.00),
+(6, 'Monster Energy', 3500000.00),
+(7, 'Marlboro', 4500000.00),
+(8, 'Movistar', 1000000.00),
+(9, 'Rolex', 1500000.00),
+(10, 'Aramco', 6000000.00);
+
+INSERT INTO Piloto (EmpleadoID, Superlicencia, EquipoID, VehiculoID, SustitutoID, IdIngeniero)
+VALUES 
+(1, 'SL12345', 1, 1, NULL, 101),
+(2, 'SL23456', 2, 2, NULL, 102),
+(3, 'SL34567', 3, 3, NULL, 103),
+(4, 'SL45678', 4, 4, NULL, 104),
+(5, 'SL56789', 5, 5, NULL, 105),
+(6, 'SL67890', 6, 6, NULL, 106),
+(7, 'SL78901', 7, 7, NULL, 107),
+(8, 'SL89012', 8, 8, NULL, 108),
+(9, 'SL90123', 9, 9, NULL, 109),
+(10, 'SL01234', 10, 10, NULL, 110);
+
+INSERT INTO Vehiculo (VehiculoID, Dimensiones, AñoFabricacion, VelMax, NumeroBastidor, Color, TipoRueda, PilotoID)
+VALUES 
+(1, '4.5x2.0x1.2', 2020, 320, 'BAS123456', 'Rojo', 'Pirelli', 1),
+(2, '4.5x2.1x1.3', 2019, 310, 'BAS234567', 'Negro', 'Michelin', 2),
+(3, '4.4x2.0x1.2', 2021, 315, 'BAS345678', 'Azul', 'Pirelli', 3),
+(4, '4.6x2.1x1.4', 2018, 330, 'BAS456789', 'Verde', 'Bridgestone', 4),
+(5, '4.7x2.2x1.3', 2020, 325, 'BAS567890', 'Amarillo', 'Michelin', 5),
+(6, '4.5x2.0x1.1', 2021, 305, 'BAS678901', 'Blanco', 'Pirelli', 6),
+(7, '4.6x2.2x1.3', 2019, 335, 'BAS789012', 'Gris', 'Bridgestone', 7),
+(8, '4.4x2.1x1.4', 2020, 310, 'BAS890123', 'Negro', 'Pirelli', 8),
+(9, '4.5x2.3x1.2', 2021, 320, 'BAS901234', 'Rojo', 'Michelin', 9),
+(10, '4.7x2.0x1.1', 2018, 300, 'BAS012345', 'Verde', 'Pirelli', 10);
+
+INSERT INTO Circuito (CircuitoID, Nombre, NumeroCurvas, SentidoGiro, Pais, Ciudad)
+VALUES 
+(1, 'Monza', 11, 'Horario', 'Italia', 'Monza'),
+(2, 'Silverstone', 18, 'Antihorario', 'Reino Unido', 'Silverstone'),
+(3, 'Suzuka', 16, 'Horario', 'Japón', 'Suzuka'),
+(4, 'Interlagos', 15, 'Antihorario', 'Brasil', 'Sao Paulo'),
+(5, 'Catalunya', 14, 'Horario', 'España', 'Barcelona'),
+(6, 'Yas Marina', 21, 'Antihorario', 'Emiratos Árabes Unidos', 'Abu Dhabi'),
+(7, 'Spa-Francorchamps', 19, 'Horario', 'Bélgica', 'Stavelot'),
+(8, 'Austin', 20, 'Antihorario', 'EEUU', 'Austin'),
+(9, 'Imola', 13, 'Horario', 'Italia', 'Imola'),
+(10, 'Zandvoort', 14, 'Antihorario', 'Países Bajos', 'Zandvoort');
+
+INSERT INTO Entrenamiento (EntrenamientoID, EquipoID, Rendimiento, MejoraTiempo)
+VALUES 
+(1, 1, 98.5, 1.234),
+(2, 2, 97.3, 1.456),
+(3, 3, 96.7, 1.789),
+(4, 4, 95.4, 2.012),
+(5, 5, 94.8, 1.678),
+(6, 6, 93.6, 2.345),
+(7, 7, 92.9, 2.456),
+(8, 8, 91.8, 2.789),
+(9, 9, 90.7, 1.890),
+(10, 10, 89.5, 1.123);
+
+INSERT INTO Carrera (CarreraID, PilotoID, CircuitoID, NumeroEntradasBoxes, Accidente, NumVueltas, Tiempo)
+VALUES 
+(1, 1, 1, 2, FALSE, 53, '01:32:45'),
+(2, 2, 2, 1, TRUE, 52, '01:33:15'),
+(3, 3, 3, 3, FALSE, 56, '01:31:50'),
+(4, 4, 4, 2, TRUE, 55, '01:34:20'),
+(5, 5, 5, 1, FALSE, 57, '01:30:25'),
+(6, 6, 6, 2, FALSE, 58, '01:32:00'),
+(7, 7, 7, 3, TRUE, 54, '01:33:40'),
+(8, 8, 8, 1, FALSE, 59, '01:31:10'),
+(9, 9, 9, 2, TRUE, 60, '01:34:50'),
+(10, 10, 10, 3, FALSE, 61, '01:30:05');
+
+INSERT INTO Mecanico (EmpleadoID, PosicionBoxes, EquipoID)
+VALUES 
+(1, 'Frontal', 1),
+(2, 'Lateral Izquierda', 2),
+(3, 'Lateral Derecha', 3),
+(4, 'Trasero', 4),
+(5, 'Frontal', 5),
+(6, 'Lateral Izquierda', 6),
+(7, 'Lateral Derecha', 7),
+(8, 'Trasero', 8),
+(9, 'Frontal', 9),
+(10, 'Lateral Izquierda', 10);
+
+INSERT INTO IngenieroCarrera (EmpleadoID, PilotoID, EquipoID, DirigidoPor, Especialidad)
+VALUES 
+(101, 1, 1, NULL, 'Aerodinámica'),
+(102, 2, 2, NULL, 'Motor'),
+(103, 3, 3, NULL, 'Chasis'),
+(104, 4, 4, NULL, 'Suspensión'),
+(105, 5, 5, NULL, 'Combustible'),
+(106, 6, 6, NULL, 'Neumáticos'),
+(107, 7, 7, NULL, 'Electrónica'),
+(108, 8, 8, NULL, 'Transmisión'),
+(109, 9, 9, NULL, 'Sistemas híbridos'),
+(110, 10, 10, NULL, 'Diseño aerodinámico');
+
+INSERT INTO Coche (VehiculoID, CocheID, ConfigMotor, Aerodinamica, Transmision)
+VALUES 
+(1, 1, 'V6 Híbrido', 'Baja Resistencia', 'Automática'),
+(2, 2, 'V8', 'Media Resistencia', 'Manual'),
+(3, 3, 'V6', 'Alta Resistencia', 'Automática'),
+(4, 4, 'V12', 'Baja Resistencia', 'Manual'),
+(5, 5, 'V10', 'Alta Resistencia', 'Automática'),
+(6, 6, 'V6 Turbo', 'Media Resistencia', 'Manual'),
+(7, 7, 'V6 Híbrido', 'Baja Resistencia', 'Automática'),
+(8, 8, 'V8 Turbo', 'Media Resistencia', 'Manual'),
+(9, 9, 'V10', 'Alta Resistencia', 'Automática'),
+(10, 10, 'V12', 'Baja Resistencia', 'Manual');
+
+INSERT INTO Moto (VehiculoID, MotoID, Cilindarda, AlturaAsiento, TipoManillar, CilindradaCC)
+VALUES 
+(11, 11, 4, 80.5, 'Estándar', 600),
+(12, 12, 2, 78.0, 'Deportivo', 1000),
+(13, 13, 3, 81.2, 'Café Racer', 750),
+(14, 14, 4, 79.3, 'Enduro', 850),
+(15, 15, 2, 77.8, 'Custom', 1200),
+(16, 16, 3, 80.0, 'Cruiser', 650),
+(17, 17, 4, 82.0, 'Deportivo', 1000),
+(18, 18, 2, 79.5, 'Naked', 900),
+(19, 19, 3, 81.0, 'Touring', 800),
+(20, 20, 4, 80.3, 'Adventure', 1100);
+
+INSERT INTO Calendario (Temporada, Fecha, CircuitoID, VehiculoID, PilotoID, EquipoID)
+VALUES 
+(2024, '2024-03-10', 1, 1, 1, 1),
+(2024, '2024-04-05', 2, 2, 2, 2),
+(2024, '2024-05-12', 3, 3, 3, 3),
+(2024, '2024-06-18', 4, 4, 4, 4),
+(2024, '2024-07-25', 5, 5, 5, 5),
+(2024, '2024-08-30', 6, 6, 6, 6),
+(2024, '2024-09-15', 7, 7, 7, 7),
+(2024, '2024-10-22', 8, 8, 8, 8),
+(2024, '2024-11-05', 9, 9, 9, 9),
+(2024, '2024-12-20', 10, 10, 10, 10);
+
+INSERT INTO Pieza (PiezaID, NumeroSerie, Precio, Stock, Dimensiones, FechaVenta, Tipo, ProveedorID, VehiculoID, FacturaID, OperadorID)
+VALUES 
+(1, 'PS12345', 1200.00, 15, '30x15x10', 2023, 'Motor', 1, 1, 1, 1),
+(2, 'PS23456', 850.00, 20, '25x10x8', 2023, 'Rueda', 2, 2, 2, 2),
+(3, 'PS34567', 1500.00, 10, '50x30x20', 2023, 'Chasis', 3, 3, 3, 3),
+(4, 'PS45678', 300.00, 30, '10x10x5', 2023, 'Neumático', 4, 4, 4, 4),
+(5, 'PS56789', 2000.00, 5, '60x40x30', 2023, 'Suspensión', 5, 5, 5, 5),
+(6, 'PS67890', 1000.00, 25, '20x15x10', 2023, 'Frenos', 6, 6, 6, 6),
+(7, 'PS78901', 700.00, 40, '15x10x8', 2023, 'Alerón', 7, 7, 7, 7),
+(8, 'PS89012', 900.00, 12, '35x20x15', 2023, 'Caja de Cambios', 8, 8, 8, 8),
+(9, 'PS90123', 1800.00, 8, '45x25x20', 2023, 'Motor', 9, 9, 9, 9),
+(10, 'PS01234', 400.00, 50, '12x12x10', 2023, 'Neumático', 10, 10, 10, 10);
+
+INSERT INTO Factura (FacturaID, NumPiezas, Fechas, ContableID)
+VALUES 
+(1, 5, '2023-09-01', 1),
+(2, 10, '2023-09-15', 2),
+(3, 8, '2023-10-01', 3),
+(4, 6, '2023-10-20', 4),
+(5, 12, '2023-11-01', 5),
+(6, 4, '2023-11-10', 6),
+(7, 9, '2023-11-25', 7),
+(8, 7, '2023-12-01', 8),
+(9, 3, '2023-12-15', 9),
+(10, 11, '2023-12-25', 10);
+
+
+INSERT INTO Contrato (ContratoID, EmpleadoID, FechaInicio, FechaFin, Descripcion, Salario)
+VALUES 
+(1, 1, '2023-01-01', '2025-01-01', 'Contrato por 2 años con opción a renovación', 1500000),
+(2, 2, '2023-02-01', '2026-02-01', 'Contrato por 3 años', 2000000),
+(3, 3, '2023-03-01', '2024-03-01', 'Contrato por 1 año', 1800000),
+(4, 4, '2023-04-01', '2025-04-01', 'Contrato por 2 años', 2200000),
+(5, 5, '2023-05-01', '2026-05-01', 'Contrato por 3 años', 2500000),
+(6, 6, '2023-06-01', '2024-06-01', 'Contrato por 1 año con opción a extensión', 1700000),
+(7, 7, '2023-07-01', '2025-07-01', 'Contrato por 2 años', 2300000),
+(8, 8, '2023-08-01', '2026-08-01', 'Contrato por 3 años', 2100000),
+(9, 9, '2023-09-01', '2024-09-01', 'Contrato por 1 año', 1600000),
+(10, 10, '2023-10-01', '2025-10-01', 'Contrato por 2 años', 1900000);
+
+INSERT INTO Proveedor (ProveedorID, Nombre)
+VALUES 
+(1, 'Proveedor A'),
+(2, 'Proveedor B'),
+(3, 'Proveedor C'),
+(4, 'Proveedor D'),
+(5, 'Proveedor E'),
+(6, 'Proveedor F'),
+(7, 'Proveedor G'),
+(8, 'Proveedor H'),
+(9, 'Proveedor I'),
+(10, 'Proveedor J');
+
+INSERT INTO PatrocinadorPatrocinaEquipo (PatrocinadorID, EquipoID, Temporada)
+VALUES 
+(1, 1, '2024'),
+(2, 2, '2024'),
+(3, 3, '2024'),
+(4, 4, '2024'),
+(5, 5, '2024'),
+(6, 6, '2024'),
+(7, 7, '2024'),
+(8, 8, '2024'),
+(9, 9, '2024'),
+(10, 10, '2024');
