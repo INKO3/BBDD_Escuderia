@@ -1,0 +1,15 @@
+CREATE TRIGGER empleado_gana_menos_jefe
+    BEFORE INSERT OR UPDATE ON Contrato
+    REFERENCING NEW AS tupla_nueva
+    FOR EACH ROW
+DECLARE
+    salario_jefe NUMBER;
+BEGIN
+    SELECT Salario INTO salario_jefe
+    FROM Contrato
+    WHERE EmpleadoID = NEW.SuperiorID;
+    IF :NEW.Salario >= salario_jefe
+        THEN
+            RAISE_APPLICATION_ERROR(-20001, 'El salario del empleado no puede ser mayor o igual al del jefe de equipo.');
+        END IF;
+END;
